@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: inder-replicaset
+  labels:
+    app: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      web: nginx
+  template:
+    metadata:
+      labels:
+        web: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80
