@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: inderpreet-configmap
 data:
-  DB_Host: Mongodb
+  DB_Host: mongodb-service
   DB_Port: "27017"
   DB_User: admin
   APP_name: vegetable-order-app
