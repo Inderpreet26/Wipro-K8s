@@ -1,32 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: veg-deployment
+  name: inderpreet-deployment
+  labels:
+    first: app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: veg
+      app: web
   template:
     metadata:
       labels:
-        app: veg
+        app: web
     spec:
       containers:
-        - name: vegetable-container
+        - name: inderpreet-container
           image: inderpreet26/veg:v2.0.0
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: inderpreet-configmap
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: veg-service
+  name: inderpreet-service
 spec:
   selector:
-    app: veg
+    app: web
+  type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 3000
+      port: 80
       targetPort: 3000
-  type: ClusterIP
