@@ -22,6 +22,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: inderpreet-configmap
+            - secretRef:
+                name: inderpreet-secret
 ---
 apiVersion: v1
 kind: Service
