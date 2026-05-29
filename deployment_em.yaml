@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: elite-motors
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: elite-motors
+
+  template:
+    metadata:
+      labels:
+        app: elite-motors
+
+    spec:
+      containers:
+      - name: elite-motors
+
+        image: inderpreet26/elite-motors:v1
+
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - name: temp-storage
+          mountPath: /data
+
+        env:
+        - name: APP_NAME
+          value: "Elite Motors"
+
+      volumes:
+      - name: temp-storage
+        emptyDir: {}
